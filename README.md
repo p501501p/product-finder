@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Product Finder
 
-## Getting Started
+Product Finder เป็นแอปค้นหาสินค้าแบบง่าย ๆ ที่ใช้ Next.js โดยมีฟีเจอร์หลักดังนี้:
 
-First, run the development server:
+- ค้นหาสินค้าโดยใช้คำค้นหา
+- กรองตามหมวดหมู่
+- เรียงลำดับสินค้าตามชื่อหรือราคา
+- กรองช่วงราคาต่ำสุดและสูงสุด
+- แบ่งหน้าแบบง่าย ๆ พร้อม Previous / Next
+- เก็บค่า filter และ pagination ไว้ใน Query String
 
-```bash
+## เทคโนโลยีที่ใช้
+
+- Next.js 16
+- React 19
+- TypeScript
+- Tailwind CSS
+
+## โครงสร้างโปรเจค
+
+- app/Products/page.tsx : หน้าแสดงรายการสินค้าและฟอร์มค้นหา
+- data/products.ts : ข้อมูลสินค้า
+- lib/filter-products.ts : ฟังก์ชันกรองและเรียงสินค้า
+- app/page.tsx : หน้า landing หรือหน้าแรก
+
+## การติดตั้ง
+
+1. Clone โครงการ
+2. เปิด terminal แล้วติดตั้ง dependency
+
+npm install
+
+## การรันโปรเจค
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+จากนั้นเปิดเบราว์เซอร์ที่:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+http://localhost:3000/products
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ตัวอย่างการใช้งาน
 
-## Learn More
+- ค้นหาชื่อสินค้า
+  - /products?q=keyboard
+- กรองหมวดหมู่
+  - /products?category=tech
+- เรียงราคาน้อยไปมาก
+  - /products?sort=price-asc
+- กรองช่วงราคา
+  - /products?minPrice=1000&maxPrice=5000
+- รวม filter ทั้งหมด
+  - /products?q=mouse&category=tech&sort=price-asc&minPrice=500&maxPrice=3000&page=1
 
-To learn more about Next.js, take a look at the following resources:
+## การ build สำหรับ production
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+npm run build
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## การรัน production server
 
-## Deploy on Vercel
+npm run start
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## หมายเหตุ
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+โปรเจคนี้ออกแบบให้ใช้งานแบบ frontend demo ที่มีข้อมูลสินค้าแบบ static และใช้ Query String เป็นกลไกจัดเก็บค่า filter เพื่อให้สามารถแชร์ลิงก์หรือ reload หน้าแล้วยังคงการค้นหาเดิมไว้ได้
+
+
+## ผู้จัดทำ
+นายกิตติศักดิ์ ขันเเข็ง 673450031-4
